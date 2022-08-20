@@ -14,8 +14,8 @@ module.exports = {
 
     return config
   },
-
-  webpackDevMiddleware: config => config,
+  // i18,
+  // webpackDevMiddleware: config => config,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
 
   async headers() {

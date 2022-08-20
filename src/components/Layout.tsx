@@ -29,7 +29,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
           justify={'center'}
           align={'center'}
           w={'full'}
-          mt={['0', '4em']}
+          mt={['0', '6em']}
           flexDir={'column'}>
           {children}
         </Flex>

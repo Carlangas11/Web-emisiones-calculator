@@ -27,7 +27,7 @@ export const Navbar: FC = () => {
           onClick={() => router.push('/')}
           cursor={'pointer'}
           w={['auto', '300px']}>
-          <Img src={ZeroCompany.src} h={['24px', '100px']} width={['auto']} />
+          <Img src={ZeroCompany.src} h={['24px', '110px']} width={['auto']} />
         </Box>
         <Flex justify="flex-end" align="center" gridGap={1}>
           <Button
@@ -46,7 +46,7 @@ export const Navbar: FC = () => {
 
   return (
     <Flex
-      h={'85px'}
+      h={'90px'}
       w={'100%'}
       bg={'grey'}
       align={'center'}

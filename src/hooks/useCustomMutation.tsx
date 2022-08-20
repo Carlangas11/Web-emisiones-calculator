@@ -9,6 +9,7 @@ export const useCustomMutation = <QueryType,>(
 ) => {
   const { data } = useSession()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return useMutation(name, async (variables: Record<string, any> | undefined) =>
     graphqlClient()
       .setHeader('Authorization', `Bearer ${data?.accessToken}`)

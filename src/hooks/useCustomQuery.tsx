@@ -6,6 +6,7 @@ import { graphqlClient } from 'lib/queryClient'
 export const useCustomQuery = <QueryType,>(
   QUERY: DocumentNode,
   name: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   variables?: Record<string, any> | undefined
 ) => {
   const { data } = useSession()
