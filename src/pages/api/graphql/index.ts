@@ -1,5 +1,3 @@
-import LOGIN_USER from './loginUser.gql'
+import SESSION from './session.gql'
 
-export {
-    LOGIN_USER
-}
+export { SESSION }

@@ -51,7 +51,7 @@ export default NextAuth({
     },
     session: async ({ session, token }) => {
       session.accessToken = token.access_token
-      if (session) session.user = token.user as unknown as User
+      if (session) session.user = token.user as User
 
       return Promise.resolve(session)
     },
