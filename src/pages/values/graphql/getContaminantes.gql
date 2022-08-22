@@ -1,0 +1,14 @@
+query getContaminantes($input: Float!) {
+  getContaminantes(pagination:$input) {
+	pagination
+    contaminantes {
+      name
+      value
+      measureUnit
+      nivel1
+      nivel2
+      nivel3
+      nivel4
+    }
+  }
+}
