@@ -9,7 +9,8 @@ import {
   Tr,
   Th,
   Tbody,
-  Icon
+  Icon,
+  Td
 } from '@chakra-ui/react'
 import LaterlMenu from '@components/LateralMenu'
 import { useCustomLazyQuery } from 'hooks/useCustomLazyQuery'
@@ -86,13 +87,13 @@ const Values: NextPage = () => {
             {contaminantes &&
               contaminantes.map((contaminante, idx) => (
                 <Tr key={idx.toString()}>
-                  <Th>{contaminante.nivel1}</Th>
-                  <Th>{contaminante.nivel2}</Th>
-                  <Th>{contaminante.nivel3}</Th>
-                  <Th>{contaminante.nivel4}</Th>
-                  <Th>{contaminante.name}</Th>
-                  <Th isNumeric>{contaminante.value}</Th>
-                  <Th>{contaminante.measureUnit}</Th>
+                  <Td>{contaminante.nivel1}</Td>
+                  <Td>{contaminante.nivel2}</Td>
+                  <Td>{contaminante.nivel3}</Td>
+                  <Td>{contaminante.nivel4}</Td>
+                  <Td>{contaminante.name}</Td>
+                  <Td isNumeric>{contaminante.value}</Td>
+                  <Td>{contaminante.measureUnit}</Td>
                 </Tr>
               ))}
           </Tbody>
