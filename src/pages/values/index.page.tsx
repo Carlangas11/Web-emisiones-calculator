@@ -13,11 +13,13 @@ import {
   Td
 } from '@chakra-ui/react'
 import LaterlMenu from '@components/LateralMenu'
+import Loading from '@components/Loading'
 import { useCustomLazyQuery } from 'hooks/useCustomLazyQuery'
+import nextI18NextConfig from '@root/next-i18next.config.js'
 
-import { useLoggedUserData } from 'hooks/useLoggedUserData'
 import { Contaminante } from 'models/Contaminante'
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
 import { GET_CONTAMINANTES } from './graphql'
 import { getContaminantes } from './type'
@@ -33,14 +35,12 @@ const tableHeaders = [
 ]
 
 const Values: NextPage = () => {
-  const { user } = useLoggedUserData(true)
-
   const [contaminantes, setContaminantes] = useState<
     Contaminante[] | undefined
   >(undefined)
   const [pagination, setPagination] = useState<number>(1)
 
-  const { refetch } = useCustomLazyQuery<{
+  const { refetch, isFetching } = useCustomLazyQuery<{
     getContaminantes: getContaminantes
   }>(GET_CONTAMINANTES, 'getContaminantes', { input: pagination })
 
@@ -132,21 +132,33 @@ const Values: NextPage = () => {
     )
   }
 
-  const renderUserLanding = () => (
-    <Flex w={'95%'} justify={'space-between'}>
-      <LaterlMenu />
-      {renderRightSection()}
-    </Flex>
-  )
-
-  if (user)
-    return (
-      <Flex w={'full'} justify={'center'}>
-        {renderUserLanding()}
+  const renderUserLanding = () =>
+    !isFetching ? (
+      <Flex w={'95%'} justify={'space-between'}>
+        <LaterlMenu />
+        {renderRightSection()}
       </Flex>
+    ) : (
+      <Loading />
     )
 
-  return <Box>holi</Box>
+  return (
+    <Flex w={'full'} justify={'center'}>
+      {renderUserLanding()}
+    </Flex>
+  )
+}
+
+export const getStaticProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(
+        locale || 'es',
+        ['navbar', 'index', 'common', 'lateralMenu'],
+        nextI18NextConfig
+      ))
+    }
+  }
 }
 
 export default Values

@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 
 import NextAuth, { User } from 'next-auth'
 import CredentialsProvider, {
@@ -15,6 +15,11 @@ export default NextAuth({
       credentials: {} as Record<string, CredentialInput>,
       async authorize(credentials) {
         try {
+          const { data } = await axios.get<
+            never,
+            AxiosResponse<{ preferredLocale?: string; defaultLocale: string }>
+          >(`${process.env.NEXTAUTH_URL}/api/language`)
+
           const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signIn`,
             {
@@ -24,7 +29,9 @@ export default NextAuth({
             {
               headers: {
                 accept: '*/*',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'content-language':
+                  data.preferredLocale || data.defaultLocale || 'es'
               }
             }
           )

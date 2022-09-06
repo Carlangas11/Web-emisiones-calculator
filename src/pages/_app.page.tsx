@@ -8,6 +8,12 @@ import { SessionProvider } from 'next-auth/react'
 import theme from '../theme'
 import { QueryClientProvider } from 'react-query'
 import { queryClient } from 'lib/queryClient'
+import { appWithTranslation } from 'next-i18next'
+
+import 'dayjs/locale/es'
+import dayjs from 'dayjs'
+
+dayjs.locale('es')
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -25,4 +31,4 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
