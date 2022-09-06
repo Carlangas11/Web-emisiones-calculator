@@ -1,7 +1,7 @@
 import { User } from 'models/User'
 import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { SESSION } from 'pages/api/graphql'
+import { SESSION } from 'pages/auth/graphql'
 import { useEffect, useState } from 'react'
 import { useCustomLazyQuery } from './useCustomLazyQuery'
 
@@ -42,7 +42,7 @@ export const useLoggedUserData = (protectRoute?: boolean): ReturnTypes => {
   }, [session, refetch])
 
   useEffect(() => {
-    if (status === 'unauthenticated' && protectRoute)
+    if (!isFetching && status === 'unauthenticated' && protectRoute)
       router.push(
         `/auth/signin${
           router.asPath !== '/auth/signin'

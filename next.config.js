@@ -1,6 +1,8 @@
-const ContentSecurityPolicy = `default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';font-src 'self';`
+const { i18n } = require('./next-i18next.config')
 
-module.exports = {
+// const ContentSecurityPolicy = `default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';font-src 'self';`
+
+const nextConfig = {
   poweredByHeader: false,
   images: {
     domains: ['i.imgur.com', 'www.google.com', 'imgur.com']
@@ -14,45 +16,47 @@ module.exports = {
 
     return config
   },
-  // i18,
+  i18n,
   // webpackDevMiddleware: config => config,
-  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
 
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY'
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload'
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin'
-          }
-          // {
-          //   key: 'Content-Security-Policy',
-          //   value: ContentSecurityPolicy,
-          // },
-          // {
-          //   key: 'Permissions-Policy',
-          //   value: `camera=(); battery=(self); geolocation=*; microphone=()`,
-          // },
-        ]
-      }
-    ]
-  }
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/(.*)',
+  //       headers: [
+  //         {
+  //           key: 'X-Content-Type-Options',
+  //           value: 'nosniff'
+  //         },
+  //         {
+  //           key: 'X-Frame-Options',
+  //           value: 'DENY'
+  //         },
+  //         {
+  //           key: 'X-XSS-Protection',
+  //           value: '1; mode=block'
+  //         },
+  //         {
+  //           key: 'Strict-Transport-Security',
+  //           value: 'max-age=63072000; includeSubDomains; preload'
+  //         },
+  //         {
+  //           key: 'Referrer-Policy',
+  //           value: 'origin-when-cross-origin'
+  //         }
+  // {
+  //   key: 'Content-Security-Policy',
+  //   value: ContentSecurityPolicy,
+  // },
+  // {
+  //   key: 'Permissions-Policy',
+  //   value: `camera=(); battery=(self); geolocation=*; microphone=()`,
+  // },
+  // ]
+  // }
+  // ]
+  // }
 }
+
+module.exports = nextConfig

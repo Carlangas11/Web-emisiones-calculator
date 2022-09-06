@@ -5,8 +5,10 @@ import { useRouter } from 'next/router'
 import { BiUserCircle } from 'react-icons/bi'
 import { signOut, useSession } from 'next-auth/react'
 import { queryClient } from 'lib/queryClient'
+import { useTranslation } from 'next-i18next'
 
 export const Navbar: FC = () => {
+  const { t } = useTranslation('navbar')
   const { data } = useSession()
   const router = useRouter()
 
@@ -36,7 +38,7 @@ export const Navbar: FC = () => {
             color={'gray.900'}
             borderRadius="26px"
             onClick={() => (data ? onLogOut() : router.push('/auth/signin'))}>
-            {data ? 'Cierra Sesion' : 'Inicia sesión'}
+            {data ? t('logout') : t('signin')}
             <Icon as={BiUserCircle} ml="5px" w="1.5em" h="1.5em" />
           </Button>
         </Flex>

@@ -1,8 +1,10 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 const LaterlMenu = () => {
   const router = useRouter()
+  const { t } = useTranslation('lateralMenu')
 
   const createItem = (name?: string, path?: string) => ({
     name,
@@ -10,8 +12,8 @@ const LaterlMenu = () => {
   })
 
   const staticItems = [
-    createItem('Información de usuario', '/user-information'),
-    createItem('Información de valores', '/values')
+    createItem(t('userInformation'), '/user-information'),
+    createItem(t('valuesInformation'), '/values')
   ]
   return (
     <Box>
