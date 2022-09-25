@@ -1,0 +1,26 @@
+[
+  {
+    "consumoAnual": 23210,
+    "alcance": 1,
+    "area": "Agua Mar",
+    "fuenteDeConsumo": "Gasolina",
+    "subfuenteDeConsumo": "Equipos de Producción",
+    "unidades": "Litros"
+  },
+  {
+    "consumoAnual": 35683,
+    "alcance": 2,
+    "area": "Agua Mar",
+    "fuenteDeConsumo": "Electricidad",
+    "subfuenteDeConsumo": "SEN",
+    "unidades": "kWh"
+  },
+  {
+    "consumoAnual": 7620,
+    "alcance": 3,
+    "area": "Planta",
+    "fuenteDeConsumo": "Residuos",
+    "subfuenteDeConsumo": "Peligrosos",
+    "unidades": "Kg"
+  }
+]

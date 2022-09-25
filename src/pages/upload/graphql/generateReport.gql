@@ -1,0 +1,7 @@
+mutation generateReport($input: [GenerateReportInput!]!) {
+  generateReport(input: $input) {
+    id
+    ok
+    msg
+  }
+}
