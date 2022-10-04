@@ -1,0 +1,25 @@
+query getReportItems($reportId: String!){
+  getReportItems(reportId:$reportId){
+    nivel1
+    nivel2
+    nivel3
+    nivel4
+    consumption
+    consumptionUnit
+    costCenter
+    period
+    totalFe
+    measureUnitFe
+    totalEmission
+    totalEmissionUnit
+    fuenteDeConsumo
+    subfuenteDeConsumo
+    contaminantes {
+      name
+      value
+      measureUnit
+      emission
+      emissionUnit
+    }
+  }
+}
