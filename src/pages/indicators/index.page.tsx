@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Button, Flex } from '@chakra-ui/react'
 import LaterlMenu from '@components/LateralMenu'
 import { useLoggedUserData } from 'hooks/useLoggedUserData'
 import type { GetServerSideProps, NextPage } from 'next'
@@ -49,6 +49,7 @@ const Indicators: NextPage = () => {
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
       <Flex w={'70%'} direction={'column'}>
+        {t('reports')}
         {goToQuery()}
       </Flex>
     </Flex>

@@ -26,3 +26,16 @@ export type GraphsType = {
   totalEmissions: TotalEmissionsType
   totalEmissionsByAlcance: TotalEmissionsByAlcanceType
 }
+
+export type DataType = [string, number, number, number, number]
+
+export type GraphData = {
+  labels: string[]
+  datasets: {
+    label: string
+    data: number[]
+    backgroundColor: string[] | string
+    borderColor?: string[]
+    borderWidth?: number
+  }[]
+}
