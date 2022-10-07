@@ -15,7 +15,8 @@ const LaterlMenu = () => {
     createItem(t('userInformation'), '/user-information'),
     createItem(t('valuesInformation'), '/emissionsReport'),
     createItem(t('upload'), '/upload'),
-    createItem(t('reports'), '/reports')
+    createItem(t('reports'), '/reports'),
+    createItem(t('indicators'), '/indicators')
   ]
   return (
     <Box>

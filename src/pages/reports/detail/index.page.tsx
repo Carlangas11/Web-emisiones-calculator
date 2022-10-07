@@ -108,7 +108,7 @@ export const getStaticProps: GetServerSideProps = async ({ locale }) => {
     props: {
       ...(await serverSideTranslations(
         locale || 'es',
-        ['navbar', 'index', 'common', 'lateralMenu', 'reports'],
+        ['navbar', 'index', 'common', 'lateralMenu', 'reportsDetail'],
         nextI18NextConfig
       ))
     }

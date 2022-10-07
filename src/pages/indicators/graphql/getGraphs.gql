@@ -1,0 +1,73 @@
+query getGraphs($input: GenerateGraphsRequest!) {
+  getGraphs(input: $input) {
+    totalEmissions {
+      emisionTotal
+      unidadMedida
+    }
+    totalEmissionsByAlcance {
+      alcance1 {
+        totalPorAlcance {
+          emisionTotal
+          unidadMedida
+        }
+        emisionesPorUnidad {
+          nombre
+          valor
+          unidadMedida
+        }
+        emisionesPorNivel2 {
+          nombre
+          valor
+          unidadMedida
+        }
+        emisionesPorNivel3 {
+          nombre
+          valor
+          unidadMedida
+        }
+      }
+      alcance2 {
+        totalPorAlcance {
+          emisionTotal
+          unidadMedida
+        }
+        emisionesPorUnidad {
+          nombre
+          valor
+          unidadMedida
+        }
+        emisionesPorNivel2 {
+          nombre
+          valor
+          unidadMedida
+        }
+        emisionesPorNivel3 {
+          nombre
+          valor
+          unidadMedida
+        }
+      }
+      alcance3 {
+        totalPorAlcance {
+          emisionTotal
+          unidadMedida
+        }
+        emisionesPorUnidad {
+          nombre
+          valor
+          unidadMedida
+        }
+        emisionesPorNivel2 {
+          nombre
+          valor
+          unidadMedida
+        }
+        emisionesPorNivel3 {
+          nombre
+          valor
+          unidadMedida
+        }
+      }
+    }
+  }
+}
