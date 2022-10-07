@@ -1,0 +1,7 @@
+query getReports {
+  getReports{
+    id
+    name
+    status
+  }
+}

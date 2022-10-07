@@ -5,7 +5,7 @@ import { AnimateSharedLayout } from 'framer-motion'
 import { useScreenSize } from 'hooks/useScreenSize'
 
 import { Container } from './Container'
-import { Navbar } from './Navbar'
+import { Navbar } from './NavBar'
 
 type LayoutProps = {
   children: React.ReactNode

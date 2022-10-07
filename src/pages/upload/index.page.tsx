@@ -29,23 +29,7 @@ import { useCustomMutation } from 'hooks/useCustomMutation'
 import { GENERATE_REPORT } from './graphql'
 import Loading from '@components/Loading'
 
-type ExcelRowType = {
-  consumoAnual: number
-  alcance: number
-  fuenteDeConsumo: string
-  subfuenteDeConsumo: string
-  area: string
-  unidades: string
-}
-
-type ExcelType = {
-  ' Consumo Anual ': number
-  Alcance: number
-  Area: string
-  'Fuente de Consumo': string
-  'Subfuente de Consumo': string
-  Unidades: string
-}
+import { ExcelRowType, ExcelType } from './types'
 
 const Upload: NextPage = () => {
   const { t } = useTranslation('upload')
@@ -91,8 +75,6 @@ const Upload: NextPage = () => {
           file.push(obj)
         })
 
-        console.log('this excel.: ', excel)
-
         setSaveFile(file)
       }
 
@@ -109,8 +91,7 @@ const Upload: NextPage = () => {
     mutate(
       { input: saveFile },
       {
-        onSuccess: data => {
-          console.log('esto', data)
+        onSuccess: () => {
           setNameFile(undefined)
           setSaveFile([])
           alert('Archivo enviado')
@@ -125,8 +106,6 @@ const Upload: NextPage = () => {
   useEffect(() => {
     if (saveFile.length > 0) setHeaderTitle(Object.keys(saveFile[0]))
   }, [saveFile])
-
-  console.log('quiero: ', saveFile)
 
   const renderUserLanding = () => (
     <Flex w={'95%'} justify={'space-between'}>
