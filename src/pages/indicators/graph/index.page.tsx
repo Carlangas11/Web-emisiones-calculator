@@ -208,11 +208,11 @@ const Graph: NextPage = () => {
           {
             label: t('emissionsByArea'),
             data: [
-              aguaMar[3],
-              aguaDulce[3],
-              planta[3],
-              oficinas[3],
-              comercial[3]
+              aguaMar[4],
+              aguaDulce[4],
+              planta[4],
+              oficinas[4],
+              comercial[4]
             ],
             backgroundColor: ['red', 'blue', 'orange', 'purple', 'yellow'],
             borderColor: ['red', 'blue', 'orange', 'purple', 'yellow'],
