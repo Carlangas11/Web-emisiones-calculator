@@ -68,25 +68,22 @@ const Detail = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {reportItems &&
-              reportItems?.map((report, idx) => (
-                <Tr key={idx.toString()}>
-                  <Td textAlign={'center'}>{report.fuenteDeConsumo}</Td>
-                  <Td textAlign={'center'}>{report.subfuenteDeConsumo}</Td>
-                  <Td textAlign={'center'}>{report.costCenter}</Td>
-                  <Td textAlign={'center'}>{report.consumptionUnit}</Td>
-                  <Td textAlign={'center'}>{report.consumption}</Td>
-                  <Td textAlign={'center'}>{report.nivel1}</Td>
-                  <Td textAlign={'center'}>{report.nivel2}</Td>
-                  <Td textAlign={'center'}>{report.nivel3}</Td>
-                  <Td textAlign={'center'}>{report.nivel4}</Td>
-                  <Td textAlign={'center'}>{report.totalFe}</Td>
-                  <Td textAlign={'center'}>{report.measureUnitFe}</Td>
-                  <Td textAlign={'center'}>
-                    {Math.round(report.totalEmission)}
-                  </Td>
-                </Tr>
-              ))}
+            {reportItems?.map((report, idx) => (
+              <Tr key={idx.toString()}>
+                <Td textAlign={'center'}>{report.fuenteDeConsumo}</Td>
+                <Td textAlign={'center'}>{report.subfuenteDeConsumo}</Td>
+                <Td textAlign={'center'}>{report.costCenter}</Td>
+                <Td textAlign={'center'}>{report.consumptionUnit}</Td>
+                <Td textAlign={'center'}>{report.consumption}</Td>
+                <Td textAlign={'center'}>{report.nivel1}</Td>
+                <Td textAlign={'center'}>{report.nivel2}</Td>
+                <Td textAlign={'center'}>{report.nivel3}</Td>
+                <Td textAlign={'center'}>{report.nivel4}</Td>
+                <Td textAlign={'center'}>{report.totalFe}</Td>
+                <Td textAlign={'center'}>{report.measureUnitFe}</Td>
+                <Td textAlign={'center'}>{Math.round(report.totalEmission)}</Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>

@@ -1,4 +1,5 @@
-import { DataType, emissionsType } from 'pages/indicators/graph/types'
+import { DataType } from '@components/Graphs/TotalGraphs/types'
+import { emissionsType } from 'pages/indicators/graph/types'
 
 export const getAreaWithValue = (
   alcance1: emissionsType[],

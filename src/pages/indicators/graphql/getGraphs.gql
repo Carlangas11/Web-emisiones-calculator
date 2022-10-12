@@ -1,73 +1,74 @@
 query getGraphs($input: GenerateGraphsRequest!) {
   getGraphs(input: $input) {
-    totalEmissions {
-      emisionTotal
+    totalEmissions{
+      emisionTotal,
       unidadMedida
-    }
-    totalEmissionsByAlcance {
-      alcance1 {
-        totalPorAlcance {
-          emisionTotal
+    },
+    totalEmissionsByAlcance{
+      alcance1{
+        totalPorAlcance{
+          emisionTotal,
           unidadMedida
+        },
+        emisionesPorUnidad{
+          nombre,
+          valor,
+          unidadMedida
+        },
+        emisionesPorNivel2{
+          nombre,
+          valor,
+          unidadMedida,
+          area{
+            nombre,
+            valor,
+            unidadMedida
+          }
         }
-        emisionesPorUnidad {
-          nombre
-          valor
+      },
+      alcance2{
+        totalPorAlcance{
+          emisionTotal,
           unidadMedida
-        }
-        emisionesPorNivel2 {
-          nombre
-          valor
+        },
+        emisionesPorUnidad{
+          nombre,
+          valor,
           unidadMedida
-        }
-        emisionesPorNivel3 {
-          nombre
-          valor
-          unidadMedida
-        }
-      }
-      alcance2 {
-        totalPorAlcance {
-          emisionTotal
-          unidadMedida
-        }
-        emisionesPorUnidad {
-          nombre
-          valor
-          unidadMedida
-        }
-        emisionesPorNivel2 {
-          nombre
-          valor
-          unidadMedida
-        }
-        emisionesPorNivel3 {
-          nombre
-          valor
-          unidadMedida
-        }
-      }
-      alcance3 {
-        totalPorAlcance {
-          emisionTotal
-          unidadMedida
-        }
-        emisionesPorUnidad {
-          nombre
-          valor
-          unidadMedida
-        }
-        emisionesPorNivel2 {
-          nombre
-          valor
-          unidadMedida
-        }
-        emisionesPorNivel3 {
-          nombre
-          valor
-          unidadMedida
+        },
+        emisionesPorNivel2{
+          nombre,
+          valor,
+          unidadMedida,
+          area{
+            nombre,
+            valor,
+            unidadMedida
+          }
         }
       }
-    }
-  }
+      alcance3{
+        totalPorAlcance{
+          emisionTotal,
+          unidadMedida
+        },
+        emisionesPorUnidad{
+          nombre,
+          valor,
+          unidadMedida
+        },
+        emisionesPorNivel2{
+          nombre,
+          valor,
+          unidadMedida,
+          area{
+            nombre,
+            valor,
+            unidadMedida
+          }
+        }
+}
+}
+}
+
 }

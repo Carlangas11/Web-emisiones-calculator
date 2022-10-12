@@ -3,15 +3,21 @@ export type TotalEmissionsType = {
   unidadMedida: string
 }
 
-export type emissionsType = {
+export type EmissionTypeByArea = {
   nombre: string
   valor: number
   unidadMedida: string
 }
 
+export type emissionsType = {
+  nombre: string
+  valor: number
+  area: EmissionTypeByArea[]
+  unidadMedida: string
+}
+
 export type AlcanceType = {
   emisionesPorNivel2: emissionsType[]
-  emisionesPorNivel3: emissionsType[]
   emisionesPorUnidad: emissionsType[]
   totalPorAlcance: TotalEmissionsType
 }
@@ -25,17 +31,4 @@ export type TotalEmissionsByAlcanceType = {
 export type GraphsType = {
   totalEmissions: TotalEmissionsType
   totalEmissionsByAlcance: TotalEmissionsByAlcanceType
-}
-
-export type DataType = [string, number, number, number, number]
-
-export type GraphData = {
-  labels: string[]
-  datasets: {
-    label: string
-    data: number[]
-    backgroundColor: string[] | string
-    borderColor?: string[]
-    borderWidth?: number
-  }[]
 }
