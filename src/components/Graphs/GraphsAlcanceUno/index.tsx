@@ -28,8 +28,8 @@ import {
 } from 'chart.js'
 import { GraphData } from '../TotalGraphs/types'
 import { useTranslation } from 'next-i18next'
-import { Bar, Pie } from 'react-chartjs-2'
-import { optionsBar, optionsPie } from './constants'
+import { Bar } from 'react-chartjs-2'
+import { optionsBar } from './constants'
 
 export type GraphsAlcanceUnoProps = {
   alcance1: emissionsType[]
@@ -56,7 +56,6 @@ ChartJS.register(
 
 const GraphsAlcanceUno: FC<GraphsAlcanceUnoProps> = ({ alcance1 }) => {
   const { t } = useTranslation('indicators')
-  const [graphDataPie, setGraphDataPie] = useState<GraphData | undefined>()
   const [graphDataBar, setGraphDataBar] = useState<GraphData | undefined>()
   const [fuentesFijas, setFuentesFijas] = useState<
     DataTypeAlcance1 | undefined
@@ -132,37 +131,18 @@ const GraphsAlcanceUno: FC<GraphsAlcanceUnoProps> = ({ alcance1 }) => {
 
   useEffect(() => {
     if (fuentesFijas && fuentesMoviles && emisionesFugitivas && totalGeneral) {
-      const obj = {
+      const obj1 = {
         labels: [fuentesFijas[0], fuentesMoviles[0], emisionesFugitivas[0]],
         datasets: [
           {
-            label: t('emissions'),
+            label: t('emissionsByNivel2'),
             data: [fuentesFijas[5], fuentesMoviles[5], emisionesFugitivas[5]],
-            backgroundColor: ['red', 'blue', 'orange'],
-            borderColor: ['red', 'blue', 'orange'],
-            borderWidth: 2
-          }
-        ]
-      }
-      setGraphDataPie(obj)
-
-      const obj2 = {
-        labels: ['Agua Dulce', 'Agua Mar', 'Oficinas', 'Planta'],
-        datasets: [
-          {
-            label: totalGeneral[0],
-            data: [
-              totalGeneral[1],
-              totalGeneral[2],
-              totalGeneral[3],
-              totalGeneral[4]
-            ],
-            backgroundColor: 'green'
+            backgroundColor: ['red']
           }
         ]
       }
 
-      setGraphDataBar(obj2)
+      setGraphDataBar(obj1)
     }
   }, [fuentesFijas, fuentesMoviles, emisionesFugitivas, totalGeneral])
 
@@ -179,7 +159,6 @@ const GraphsAlcanceUno: FC<GraphsAlcanceUnoProps> = ({ alcance1 }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {' '}
           <Tr>
             {fuentesFijas?.map((value, idx) => (
               <RowTableSumary
@@ -222,15 +201,12 @@ const GraphsAlcanceUno: FC<GraphsAlcanceUnoProps> = ({ alcance1 }) => {
       <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
         {t('graphsAlcance1')}
       </Text>
-      <Flex justify={'center'} mt={7}>
-        {renderTable()}
-      </Flex>
-      <Flex justify={'space-evenly'} align={'center'} mt={'24px'}>
-        <Box width={'50%'}>
-          {graphDataBar && <Bar options={optionsBar} data={graphDataBar} />}
+      <Flex direction={'column'} justify={'center'} mt={7}>
+        <Box w={'95%'} mx={'auto'}>
+          {renderTable()}
         </Box>
-        <Box w={'40%'}>
-          {graphDataPie && <Pie options={optionsPie} data={graphDataPie} />}
+        <Box w={'70%'} mx={'auto'} mt={4}>
+          {graphDataBar && <Bar options={optionsBar} data={graphDataBar} />}
         </Box>
       </Flex>
     </Flex>

@@ -254,13 +254,13 @@ const TotalGraphs: FC<TotalGraphsProps> = ({ totalEmissionsByAlcance }) => {
         {t('totalGrpahs')}
       </Text>
       <Flex justify={'center'} mt={7}>
-        <Box>{renderTable()}</Box>
+        <Box w={'95%'}>{renderTable()}</Box>
       </Flex>
       <Flex justify={'space-evenly'} align={'center'} mt={'24px'}>
         <Box width={'50%'}>
           {graphDataBar && <Bar options={optionsBar} data={graphDataBar} />}
         </Box>
-        <Box w={'40%'}>
+        <Box w={'40%'} mt={4}>
           {graphDataPie && <Pie options={optionsPie} data={graphDataPie} />}
         </Box>
       </Flex>

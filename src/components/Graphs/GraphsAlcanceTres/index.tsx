@@ -28,8 +28,8 @@ import {
 } from 'chart.js'
 import { GraphData } from '../TotalGraphs/types'
 import { useTranslation } from 'next-i18next'
-import { Bar, Pie } from 'react-chartjs-2'
-import { optionsBar, optionsPie } from './constants'
+import { Bar } from 'react-chartjs-2'
+import { optionsBar } from './constants'
 
 export type GraphsAlcanceTresProps = {
   alcance1: emissionsType[]
@@ -57,7 +57,6 @@ ChartJS.register(
 
 const GraphsAlcanceTres: FC<GraphsAlcanceTresProps> = ({ alcance1 }) => {
   const { t } = useTranslation('indicators')
-  const [graphDataPie, setGraphDataPie] = useState<GraphData | undefined>()
   const [graphDataBar, setGraphDataBar] = useState<GraphData | undefined>()
 
   const [serviciosAdquiridos, setServiciosAdquiridos] = useState<
@@ -163,7 +162,7 @@ const GraphsAlcanceTres: FC<GraphsAlcanceTresProps> = ({ alcance1 }) => {
       transportePersonas &&
       totalGeneral
     ) {
-      const obj = {
+      const obj2 = {
         labels: [
           serviciosAdquiridos[0],
           tratamientoResiduos[0],
@@ -172,32 +171,12 @@ const GraphsAlcanceTres: FC<GraphsAlcanceTresProps> = ({ alcance1 }) => {
         ],
         datasets: [
           {
-            label: t('emissions'),
+            label: t('emissionsByNivel2'),
             data: [
               serviciosAdquiridos[6],
               tratamientoResiduos[6],
               transporteCarga[6],
               transportePersonas[6]
-            ],
-            backgroundColor: ['red', 'blue', 'orange', 'purple'],
-            borderColor: ['red', 'blue', 'orange', 'purple'],
-            borderWidth: 2
-          }
-        ]
-      }
-      setGraphDataPie(obj)
-
-      const obj2 = {
-        labels: ['Agua Dulce', 'Agua Mar', 'Oficinas', 'Planta', 'Comercial'],
-        datasets: [
-          {
-            label: totalGeneral[0],
-            data: [
-              totalGeneral[1],
-              totalGeneral[2],
-              totalGeneral[3],
-              totalGeneral[4],
-              totalGeneral[5]
             ],
             backgroundColor: 'green'
           }
@@ -278,15 +257,12 @@ const GraphsAlcanceTres: FC<GraphsAlcanceTresProps> = ({ alcance1 }) => {
       <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
         {t('graphsAlcance3')}
       </Text>
-      <Flex justify={'center'} mt={7}>
-        {renderTable()}
-      </Flex>
-      <Flex justify={'space-evenly'} align={'center'} mt={'24px'}>
-        <Box width={'50%'}>
-          {graphDataBar && <Bar options={optionsBar} data={graphDataBar} />}
+      <Flex direction={'column'} justify={'center'} mt={7}>
+        <Box w={'95%'} mx={'auto'}>
+          {renderTable()}
         </Box>
-        <Box w={'40%'}>
-          {graphDataPie && <Pie options={optionsPie} data={graphDataPie} />}
+        <Box width={'70%'} mx={'auto'} mt={4}>
+          {graphDataBar && <Bar options={optionsBar} data={graphDataBar} />}
         </Box>
       </Flex>
     </Flex>

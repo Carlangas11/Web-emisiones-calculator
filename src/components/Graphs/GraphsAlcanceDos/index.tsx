@@ -155,11 +155,12 @@ const GraphsAlcanceDos: FC<GraphsAlcanceDosProps> = ({ alcance2 }) => {
       <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
         {t('graphsAlcance2')}
       </Text>
-      <Flex justify={'center'} mt={7}>
-        {renderTable()}
-      </Flex>
-      <Flex justify={'space-evenly'} align={'center'} mt={'24px'}>
-        <Box width={'50%'}>
+      <Flex direction={'column'} justify={'center'} mt={7}>
+        <Box w={'95%'} mx={'auto'}>
+          {renderTable()}
+        </Box>
+
+        <Box width={'70%'} mx={'auto'} mt={4}>
           {graphDataBar && <Bar options={optionsBar} data={graphDataBar} />}
         </Box>
       </Flex>
