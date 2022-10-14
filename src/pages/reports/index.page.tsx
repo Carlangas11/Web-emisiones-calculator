@@ -22,7 +22,7 @@ const Reports: NextPage = () => {
     if (data) setReports(data.getReports)
   }, [data])
 
-  const HandleDetail = (id: string) => {
+  const handleDetail = (id: string) => {
     router.push(`/reports/detail?id=${id}`)
   }
   const goToQuery = () => {
@@ -32,7 +32,7 @@ const Reports: NextPage = () => {
           <Button
             key={report.id}
             my={'14px'}
-            onClick={() => HandleDetail(report.id)}>
+            onClick={() => handleDetail(report.id)}>
             {report.name}
           </Button>
         ))}
