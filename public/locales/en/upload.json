@@ -1,1 +1,7 @@
-{ "labelDocs": "Upload your file", "addFile": "Upload", "sendFile": "Send" }
+{
+  "labelDocs": "Upload your file",
+  "addFile": "Upload",
+  "sendFile": "Send",
+  "fileSend": "The fail cant be send",
+  "failedSend": "Has an error, the file cant be send"
+}

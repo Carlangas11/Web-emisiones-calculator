@@ -1,5 +1,7 @@
 {
   "labelDocs": "Sube tu archivo",
   "addFile": "Seleccionar archivo",
-  "sendFile": "Enviar"
+  "sendFile": "Enviar",
+  "fileSend": "El archivo fue enviado",
+  "failedSend": "El archivo no pudo ser enviado"
 }
