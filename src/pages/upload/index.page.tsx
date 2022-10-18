@@ -23,7 +23,8 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import nextI18NextConfig from '@root/next-i18next.config.js'
 import { useTranslation } from 'next-i18next'
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
-import { BiCamera } from 'react-icons/bi'
+import { GoCloudUpload } from 'react-icons/go'
+
 import * as XLSX from 'xlsx'
 import { useCustomMutation } from 'hooks/useCustomMutation'
 import { GENERATE_REPORT } from './graphql'
@@ -130,7 +131,7 @@ const Upload: NextPage = () => {
             border={'1px solid #622A74'}
             color={'gray.900'}
             bg={'#FFF'}
-            leftIcon={<Icon color={'gray.900'} as={BiCamera} />}
+            leftIcon={<Icon color={'gray.900'} as={GoCloudUpload} />}
             onClick={handleClick}>
             {t('addFile')}
           </Button>
@@ -143,7 +144,7 @@ const Upload: NextPage = () => {
             onClick={sendReport}
             bg={'blue.900'}
             leftIcon={<Icon color={'#FFF'} as={CheckIcon} />}>
-            {t('addFile')}
+            {t('sendFile')}
           </Button>
           {nameFile && (
             <Flex bg={'#F2F2F2;'} p={'16px'} mt={'24px'} direction={'column'}>
