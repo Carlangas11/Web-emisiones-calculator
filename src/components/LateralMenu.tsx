@@ -1,30 +1,40 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Text } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { FaUserAlt } from 'react-icons/fa'
+import { GoGraph, GoCloudUpload } from 'react-icons/go'
+import { ImParagraphJustify } from 'react-icons/im'
+import { TbReportAnalytics } from 'react-icons/tb'
+import { IconType } from 'react-icons/lib'
 
 const LaterlMenu = () => {
   const router = useRouter()
   const { t } = useTranslation('lateralMenu')
 
-  const createItem = (name?: string, path?: string) => ({
+  const createItem = (name?: string, path?: string, icon?: IconType) => ({
     name,
-    path
+    path,
+    icon
   })
 
   const staticItems = [
-    createItem(t('userInformation'), '/user-information'),
-    createItem(t('valuesInformation'), '/emissionsDatabase'),
-    createItem(t('upload'), '/upload'),
-    createItem(t('reports'), '/reports'),
-    createItem(t('indicators'), '/indicators')
+    createItem(t('userInformation'), '/user-information', FaUserAlt),
+    createItem(
+      t('valuesInformation'),
+      '/emissionsDatabase',
+      ImParagraphJustify
+    ),
+    createItem(t('upload'), '/upload', GoCloudUpload),
+    createItem(t('reports'), '/reports', TbReportAnalytics),
+    createItem(t('indicators'), '/indicators', GoGraph)
   ]
   return (
     <Box>
-      <Box w={'335px'} p=".5em" borderRadius="6px" boxShadow={'lg'}>
+      <Box w={'300px'} p=".5em" borderRadius="6px" boxShadow={'lg'}>
         {staticItems.map((item, index) => (
           <Flex
             cursor="pointer"
-            gridGap={2}
+            gridGap={3}
             justify="start"
             align="center"
             bg={router.pathname.includes(item.path ?? '') ? 'gray.200' : 'none'}
@@ -34,7 +44,7 @@ const LaterlMenu = () => {
             borderBottomColor="borders"
             key={item.name}
             onClick={() => item.path && router.push(item.path)}>
-            <Box w="34px" h="34px" bg="borders" />
+            <Icon as={item.icon} size={10} />
             <Text w={'80%'} fontSize={'16px'}>
               {item.name}
             </Text>

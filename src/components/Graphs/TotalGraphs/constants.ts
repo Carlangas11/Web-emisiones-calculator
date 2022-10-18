@@ -3,10 +3,6 @@ export const optionsBar = {
   plugins: {
     legend: {
       position: 'top' as const
-    },
-    title: {
-      display: true,
-      text: 'Emisiones por alcance'
     }
   }
 }
@@ -16,10 +12,6 @@ export const optionsPie = {
   plugins: {
     legend: {
       position: 'right' as const
-    },
-    title: {
-      display: true,
-      text: 'Emisiones por área'
     }
   }
 }

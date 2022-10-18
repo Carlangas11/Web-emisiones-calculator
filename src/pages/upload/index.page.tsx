@@ -22,8 +22,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import nextI18NextConfig from '@root/next-i18next.config.js'
 import { useTranslation } from 'next-i18next'
-import { CheckIcon, DeleteIcon, AttachmentIcon, DownloadIcon } from '@chakra-ui/icons'
-import { BiCamera } from 'react-icons/bi'
+import {
+  CheckIcon,
+  DeleteIcon,
+  AttachmentIcon,
+  DownloadIcon
+} from '@chakra-ui/icons'
+import { GoCloudUpload } from 'react-icons/go'
 import * as XLSX from 'xlsx'
 import { useCustomMutation } from 'hooks/useCustomMutation'
 import { GENERATE_REPORT } from './graphql'
@@ -95,15 +100,14 @@ const Upload: NextPage = () => {
         onSuccess: () => {
           setNameFile(undefined)
           setSaveFile([])
-          alert('Archivo enviado')
+          alert(t('fileSend'))
         },
         onError: () => {
-          alert('no se pudo enviar el archivo')
+          alert(t('failedSend'))
         }
       }
     )
   }
-
 
   const { data } = useSession()
   const downloadFile = async (file: string) => {
@@ -112,10 +116,10 @@ const Upload: NextPage = () => {
       {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${data?.accessToken}`
+          Authorization: `Bearer ${data?.accessToken}`
         }
       }
-    );
+    )
 
     const blob = await res.blob()
     const url = window.URL.createObjectURL(blob)
@@ -128,22 +132,21 @@ const Upload: NextPage = () => {
   }
 
   const downloadExcel = (tableRows: ExcelRowType[]) => {
-
-    const objectData = tableRows.map((row) => {
+    const objectData = tableRows.map(row => {
       return {
-        'Alcance': row.alcance,
+        Alcance: row.alcance,
         'Fuente de Consumo': row.fuenteDeConsumo,
         'Subfuente de Consumo': row.subfuenteDeConsumo,
-        'Area': row.area,
-        'Unidades': row.unidades,
+        Area: row.area,
+        Unidades: row.unidades,
         ' Consumo Anual ': row.consumoAnual
       }
     })
 
-    const ws = XLSX.utils.json_to_sheet(objectData);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "tableData");
-    XLSX.writeFile(wb, "tableData.xlsx")
+    const ws = XLSX.utils.json_to_sheet(objectData)
+    const wb = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, 'tableData')
+    XLSX.writeFile(wb, 'tableData.xlsx')
   }
 
   useEffect(() => {
@@ -183,7 +186,7 @@ const Upload: NextPage = () => {
             border={'1px solid #622A74'}
             color={'gray.900'}
             bg={'#FFF'}
-            leftIcon={<Icon color={'gray.900'} as={BiCamera} />}
+            leftIcon={<Icon color={'gray.900'} as={GoCloudUpload} />}
             onClick={handleClick}>
             {t('addFile')}
           </Button>
@@ -196,28 +199,30 @@ const Upload: NextPage = () => {
             onClick={sendReport}
             bg={'blue.900'}
             leftIcon={<Icon color={'#FFF'} as={CheckIcon} />}>
-            {t('addFile')}
+            {t('sendFile')}
           </Button>
           {nameFile && (
-            <Flex bg={'#F2F2F2;'} p={'16px'} mt={'24px'} direction={'column'}>
+            <Flex bg={'#F2F2F2;'} px={'26px'} my={'20px'} direction={'column'}>
               <Flex justify={'space-between'} my={'8px'}>
                 <Text fontWeight={400} fontSize={'16px'} lineHeight={'19px'}>
                   {nameFile}
                 </Text>
-                <Box
-                  cursor={'pointer'}
-                  onClick={() => {
-                    downloadExcel(saveFile)
-                  }}>
-                  <Icon as={DownloadIcon} />
-                </Box>
-                <Box
-                  cursor={'pointer'}
-                  onClick={() => {
-                    deleteFile()
-                  }}>
-                  <Icon as={DeleteIcon} />
-                </Box>
+                <Flex gridGap={4}>
+                  <Box
+                    cursor={'pointer'}
+                    onClick={() => {
+                      downloadExcel(saveFile)
+                    }}>
+                    <Icon as={DownloadIcon} />
+                  </Box>
+                  <Box
+                    cursor={'pointer'}
+                    onClick={() => {
+                      deleteFile()
+                    }}>
+                    <Icon as={DeleteIcon} />
+                  </Box>
+                </Flex>
               </Flex>
             </Flex>
           )}

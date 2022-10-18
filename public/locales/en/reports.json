@@ -1,1 +1,5 @@
-{}
+{
+  "reports": "Reports",
+  "deletedFile": "File deteled",
+  "errorFile": "The File cant be deleted"
+}

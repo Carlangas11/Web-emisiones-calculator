@@ -54,7 +54,6 @@ const Index: NextPage = () => {
         </FormControl>
         <FormControl mt={6} isRequired>
           <FormLabel color={'#6e6e6e'}>{t('password')}</FormLabel>
-
           <Input
             pr="4.5rem"
             id="password"
@@ -71,7 +70,7 @@ const Index: NextPage = () => {
           mt={4}
           isLoading={loading}
           type="submit">
-          Inicia sesión
+          {t('login')}
         </Button>
       </form>
     </Flex>

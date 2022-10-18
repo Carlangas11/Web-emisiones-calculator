@@ -251,7 +251,7 @@ const TotalGraphs: FC<TotalGraphsProps> = ({ totalEmissionsByAlcance }) => {
   return (
     <Flex direction={'column'}>
       <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
-        {t('totalGrpahs')}
+        {t('totalGraphs')}
       </Text>
       <Flex justify={'center'} mt={7}>
         <Box w={'95%'}>{renderTable()}</Box>

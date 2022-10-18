@@ -2,5 +2,6 @@
   "email": "Email",
   "enterEmail": "Enter your email",
   "password": "Password",
-  "enterPassword": "Enter your Password"
+  "enterPassword": "Enter your Password",
+  "login": "Sign In"
 }

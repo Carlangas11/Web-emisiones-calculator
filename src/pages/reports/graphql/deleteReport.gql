@@ -1,0 +1,6 @@
+mutation deleteReport ($id: String!){
+  deleteReport(id:$id){
+    id
+    description
+  }
+}
