@@ -1,14 +1,16 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Flex, Icon, Text } from '@chakra-ui/react'
 import { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import nextI18NextConfig from '@root/next-i18next.config.js'
 import LaterlMenu from '@components/LateralMenu'
 import { useRouter } from 'next/router'
 import { useCustomQuery } from 'hooks/useCustomQuery'
-import { GET_REPORTS } from './graphql'
+import { DELETE_REPORT, GET_REPORTS } from './graphql'
 import { useEffect, useState } from 'react'
 import { ReportsType } from './types'
 import { useTranslation } from 'next-i18next'
+import { useCustomMutation } from 'hooks/useCustomMutation'
+import { DeleteIcon, ViewIcon } from '@chakra-ui/icons'
 
 const Reports: NextPage = () => {
   const { t } = useTranslation('reports')
@@ -20,6 +22,8 @@ const Reports: NextPage = () => {
     'getReports'
   )
 
+  const { mutate } = useCustomMutation(DELETE_REPORT, 'deleteReport')
+
   useEffect(() => {
     if (data) setReports(data.getReports)
   }, [data])
@@ -27,16 +31,54 @@ const Reports: NextPage = () => {
   const handleDetail = (id: string) => {
     router.push(`/reports/detail?id=${id}`)
   }
+
+  const handleDelete = (reportId: string) => {
+    mutate(
+      { id: reportId },
+      {
+        onSuccess: () => {
+          alert(t('deletedFile'))
+        },
+        onError: () => {
+          alert(t('errorFile'))
+        }
+      }
+    )
+  }
+
   const goToQuery = () => {
     return (
-      <Flex direction={'column'} w={'60%'} mx={'auto'}>
+      <Flex
+        direction={'row'}
+        flexWrap={'wrap'}
+        w={'full'}
+        gridGap={3}
+        mx={'auto'}>
         {reports?.map(report => (
-          <Button
+          <Flex
+            bg={'#F2F2F2'}
+            w={'40%'}
+            p={'16px'}
+            direction={'row'}
             key={report.id}
-            my={'14px'}
-            onClick={() => handleDetail(report.id)}>
-            {report.name}
-          </Button>
+            justify={'space-between'}
+            my={'8px'}>
+            <Text fontWeight={400} fontSize={'16px'} lineHeight={'19px'}>
+              {report.name}
+            </Text>
+            <Flex gridGap={4}>
+              <Icon
+                as={ViewIcon}
+                onClick={() => handleDetail(report.id)}
+                cursor={'pointer'}
+              />
+              <Icon
+                as={DeleteIcon}
+                onClick={() => handleDelete(report.id)}
+                cursor={'pointer'}
+              />
+            </Flex>
+          </Flex>
         ))}
       </Flex>
     )

@@ -100,10 +100,10 @@ const Upload: NextPage = () => {
         onSuccess: () => {
           setNameFile(undefined)
           setSaveFile([])
-          alert('Archivo enviado')
+          alert(t('fileSend'))
         },
         onError: () => {
-          alert('no se pudo enviar el archivo')
+          alert(t('failedSend'))
         }
       }
     )
@@ -202,25 +202,27 @@ const Upload: NextPage = () => {
             {t('sendFile')}
           </Button>
           {nameFile && (
-            <Flex bg={'#F2F2F2;'} p={'16px'} mt={'24px'} direction={'column'}>
+            <Flex bg={'#F2F2F2;'} px={'26px'} my={'20px'} direction={'column'}>
               <Flex justify={'space-between'} my={'8px'}>
                 <Text fontWeight={400} fontSize={'16px'} lineHeight={'19px'}>
                   {nameFile}
                 </Text>
-                <Box
-                  cursor={'pointer'}
-                  onClick={() => {
-                    downloadExcel(saveFile)
-                  }}>
-                  <Icon as={DownloadIcon} />
-                </Box>
-                <Box
-                  cursor={'pointer'}
-                  onClick={() => {
-                    deleteFile()
-                  }}>
-                  <Icon as={DeleteIcon} />
-                </Box>
+                <Flex gridGap={4}>
+                  <Box
+                    cursor={'pointer'}
+                    onClick={() => {
+                      downloadExcel(saveFile)
+                    }}>
+                    <Icon as={DownloadIcon} />
+                  </Box>
+                  <Box
+                    cursor={'pointer'}
+                    onClick={() => {
+                      deleteFile()
+                    }}>
+                    <Icon as={DeleteIcon} />
+                  </Box>
+                </Flex>
               </Flex>
             </Flex>
           )}
