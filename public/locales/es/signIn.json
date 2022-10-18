@@ -2,5 +2,6 @@
   "email": "Correo electrónico",
   "enterEmail": "Ingrese correo electrónico",
   "password": "Contraseña",
-  "enterPassword": "Ingrese su contraseña"
+  "enterPassword": "Ingrese su contraseña",
+  "login": "Inicia sesión"
 }

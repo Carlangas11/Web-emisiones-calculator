@@ -171,7 +171,7 @@ const GraphsAlcanceTres: FC<GraphsAlcanceTresProps> = ({ alcance1 }) => {
         ],
         datasets: [
           {
-            label: t('emissionsByNivel2'),
+            label: t('emissionsByNivel3'),
             data: [
               serviciosAdquiridos[6],
               tratamientoResiduos[6],

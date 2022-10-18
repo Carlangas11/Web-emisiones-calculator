@@ -23,6 +23,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
 import { GET_CONTAMINANTES } from './graphql'
 import { getContaminantes } from './type'
+import { useTranslation } from 'next-i18next'
 
 const tableHeaders = [
   'CCH Nivel 1',
@@ -35,6 +36,7 @@ const tableHeaders = [
 ]
 
 const Values: NextPage = () => {
+  const { t } = useTranslation('emissionsDatabase')
   const [contaminantes, setContaminantes] = useState<
     Contaminante[] | undefined
   >(undefined)
@@ -110,7 +112,7 @@ const Values: NextPage = () => {
           fontSize={'36px'}
           lineHeight={'56px'}
           my={'10px'}>
-          Base de datos Huella Chile
+          {t('title')}
         </Text>
         {renderTable()}
         <Flex w={'full'} my={'20px'} align={'center'} justify={'center'}>
@@ -154,7 +156,7 @@ export const getStaticProps: GetServerSideProps = async ({ locale }) => {
     props: {
       ...(await serverSideTranslations(
         locale || 'es',
-        ['navbar', 'index', 'common', 'lateralMenu'],
+        ['navbar', 'index', 'common', 'lateralMenu', 'emissionsDatabase'],
         nextI18NextConfig
       ))
     }

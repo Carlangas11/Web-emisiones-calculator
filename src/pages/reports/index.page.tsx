@@ -1,4 +1,4 @@
-import { Button, Flex } from '@chakra-ui/react'
+import { Button, Flex, Text } from '@chakra-ui/react'
 import { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import nextI18NextConfig from '@root/next-i18next.config.js'
@@ -8,8 +8,10 @@ import { useCustomQuery } from 'hooks/useCustomQuery'
 import { GET_REPORTS } from './graphql'
 import { useEffect, useState } from 'react'
 import { ReportsType } from './types'
+import { useTranslation } from 'next-i18next'
 
 const Reports: NextPage = () => {
+  const { t } = useTranslation('reports')
   const [reports, setReports] = useState<ReportsType[] | undefined>()
   const router = useRouter()
 
@@ -44,6 +46,9 @@ const Reports: NextPage = () => {
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
       <Flex w={'70%'} direction={'column'}>
+        <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
+          {t('reports')}
+        </Text>
         {goToQuery()}
       </Flex>
     </Flex>
