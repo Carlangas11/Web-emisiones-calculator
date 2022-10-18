@@ -22,15 +22,20 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import nextI18NextConfig from '@root/next-i18next.config.js'
 import { useTranslation } from 'next-i18next'
-import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
+import {
+  CheckIcon,
+  DeleteIcon,
+  AttachmentIcon,
+  DownloadIcon
+} from '@chakra-ui/icons'
 import { GoCloudUpload } from 'react-icons/go'
-
 import * as XLSX from 'xlsx'
 import { useCustomMutation } from 'hooks/useCustomMutation'
 import { GENERATE_REPORT } from './graphql'
 import Loading from '@components/Loading'
 
 import { ExcelRowType, ExcelType } from './types'
+import { useSession } from 'next-auth/react'
 
 const Upload: NextPage = () => {
   const { t } = useTranslation('upload')
@@ -104,6 +109,46 @@ const Upload: NextPage = () => {
     )
   }
 
+  const { data } = useSession()
+  const downloadFile = async (file: string) => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/resource/getFile/${file}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${data?.accessToken}`
+        }
+      }
+    )
+
+    const blob = await res.blob()
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${file}.xlsx`
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+  }
+
+  const downloadExcel = (tableRows: ExcelRowType[]) => {
+    const objectData = tableRows.map(row => {
+      return {
+        Alcance: row.alcance,
+        'Fuente de Consumo': row.fuenteDeConsumo,
+        'Subfuente de Consumo': row.subfuenteDeConsumo,
+        Area: row.area,
+        Unidades: row.unidades,
+        ' Consumo Anual ': row.consumoAnual
+      }
+    })
+
+    const ws = XLSX.utils.json_to_sheet(objectData)
+    const wb = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, 'tableData')
+    XLSX.writeFile(wb, 'tableData.xlsx')
+  }
+
   useEffect(() => {
     if (saveFile.length > 0) setHeaderTitle(Object.keys(saveFile[0]))
   }, [saveFile])
@@ -112,6 +157,16 @@ const Upload: NextPage = () => {
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
       <Flex w={'70%'} direction={'column'}>
+        <Button
+          w={['full', 'full', 'full', '30%']}
+          p={'10px 24px'}
+          border={'1px solid #622A74'}
+          color={'#FFF'}
+          onClick={() => downloadFile('inputFile')}
+          bg={'blue.900'}
+          leftIcon={<Icon color={'#FFF'} as={AttachmentIcon} />}>
+          {'Download Example File'}
+        </Button>
         <FormControl>
           <FormLabel fontWeight={400} fontSize={'16px'} lineHeight={'19px'}>
             {t('labelDocs')}
@@ -152,6 +207,13 @@ const Upload: NextPage = () => {
                 <Text fontWeight={400} fontSize={'16px'} lineHeight={'19px'}>
                   {nameFile}
                 </Text>
+                <Box
+                  cursor={'pointer'}
+                  onClick={() => {
+                    downloadExcel(saveFile)
+                  }}>
+                  <Icon as={DownloadIcon} />
+                </Box>
                 <Box
                   cursor={'pointer'}
                   onClick={() => {
