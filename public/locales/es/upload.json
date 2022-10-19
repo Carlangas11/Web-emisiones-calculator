@@ -3,5 +3,6 @@
   "addFile": "Seleccionar archivo",
   "sendFile": "Enviar",
   "fileSend": "El archivo fue enviado",
-  "failedSend": "El archivo no pudo ser enviado"
+  "failedSend": "El archivo no pudo ser enviado",
+  "download": "Descarga ejemplo"
 }

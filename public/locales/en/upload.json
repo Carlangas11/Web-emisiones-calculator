@@ -3,5 +3,6 @@
   "addFile": "Upload",
   "sendFile": "Send",
   "fileSend": "The fail cant be send",
-  "failedSend": "Has an error, the file cant be send"
+  "failedSend": "Has an error, the file cant be send",
+  "download": "Download Example File"
 }

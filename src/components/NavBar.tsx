@@ -22,7 +22,7 @@ export const Navbar: FC = () => {
     return (
       <Flex
         w={'full'}
-        mx={['3%', '3%', '5%', '5%', '5%', '11%']}
+        mx={['3%', '3%', '5%', '5%', '5%', '3%']}
         direction={'row'}
         justify="space-between">
         <Box

@@ -11,6 +11,7 @@ import { ReportsType } from './types'
 import { useTranslation } from 'next-i18next'
 import { useCustomMutation } from 'hooks/useCustomMutation'
 import { DeleteIcon, ViewIcon } from '@chakra-ui/icons'
+import MainContainerUI from '@components/MainContainerUI'
 
 const Reports: NextPage = () => {
   const { t } = useTranslation('reports')
@@ -51,13 +52,13 @@ const Reports: NextPage = () => {
       <Flex
         direction={'row'}
         flexWrap={'wrap'}
+        justify={'space-between'}
         w={'full'}
-        gridGap={3}
-        mx={'auto'}>
+        gridGap={2}>
         {reports?.map(report => (
           <Flex
             bg={'#F2F2F2'}
-            w={'40%'}
+            w={'45%'}
             p={'16px'}
             direction={'row'}
             key={report.id}
@@ -87,12 +88,12 @@ const Reports: NextPage = () => {
   return (
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
-      <Flex w={'70%'} direction={'column'}>
-        <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
+      <MainContainerUI title={t('reports')}>
+        {/* <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
           {t('reports')}
-        </Text>
+        </Text> */}
         {goToQuery()}
-      </Flex>
+      </MainContainerUI>
     </Flex>
   )
 }

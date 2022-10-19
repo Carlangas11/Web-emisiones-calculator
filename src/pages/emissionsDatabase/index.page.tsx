@@ -2,7 +2,6 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import {
   Box,
   Flex,
-  Text,
   TableContainer,
   Table,
   Thead,
@@ -24,6 +23,7 @@ import { useEffect, useState } from 'react'
 import { GET_CONTAMINANTES } from './graphql'
 import { getContaminantes } from './type'
 import { useTranslation } from 'next-i18next'
+import MainContainerUI from '@components/MainContainerUI'
 
 const tableHeaders = [
   'CCH Nivel 1',
@@ -75,11 +75,11 @@ const Values: NextPage = () => {
   const renderTable = () => {
     return (
       <TableContainer overflowY={'auto'}>
-        <Table variant="striped" colorScheme="blue" size={'sm'}>
+        <Table variant="striped" colorScheme="blue" size={'xs'}>
           <Thead bg={'teal'}>
             <Tr>
               {tableHeaders.map((title, idx) => (
-                <Th key={idx.toString()} color={'white'}>
+                <Th key={idx.toString()} color={'white'} fontSize={'13px'}>
                   {title}
                 </Th>
               ))}
@@ -89,13 +89,17 @@ const Values: NextPage = () => {
             {contaminantes &&
               contaminantes.map((contaminante, idx) => (
                 <Tr key={idx.toString()}>
-                  <Td>{contaminante.nivel1}</Td>
-                  <Td>{contaminante.nivel2}</Td>
-                  <Td>{contaminante.nivel3}</Td>
-                  <Td>{contaminante.nivel4}</Td>
-                  <Td>{contaminante.name}</Td>
-                  <Td isNumeric>{contaminante.value}</Td>
-                  <Td>{contaminante.measureUnit}</Td>
+                  <Td fontSize={'13px'}>{contaminante.nivel1}</Td>
+                  <Td fontSize={'13px'}>{contaminante.nivel2}</Td>
+                  <Td fontSize={'13px'}>{contaminante.nivel3}</Td>
+                  <Td fontSize={'13px'}>{contaminante.nivel4}</Td>
+                  <Td fontSize={'13px'}>{contaminante.name}</Td>
+                  <Td fontSize={'13px'} textAlign={'center'}>
+                    {contaminante.value}
+                  </Td>
+                  <Td fontSize={'12px'} textAlign={'center'}>
+                    {contaminante.measureUnit}
+                  </Td>
                 </Tr>
               ))}
           </Tbody>
@@ -106,14 +110,7 @@ const Values: NextPage = () => {
 
   const renderRightSection = () => {
     return (
-      <Box w={'80%'}>
-        <Text
-          fontWeight={700}
-          fontSize={'36px'}
-          lineHeight={'56px'}
-          my={'10px'}>
-          {t('title')}
-        </Text>
+      <MainContainerUI title={t('title')}>
         {renderTable()}
         <Flex w={'full'} my={'20px'} align={'center'} justify={'center'}>
           <Icon
@@ -130,7 +127,7 @@ const Values: NextPage = () => {
             onClick={nextPage}
           />
         </Flex>
-      </Box>
+      </MainContainerUI>
     )
   }
 

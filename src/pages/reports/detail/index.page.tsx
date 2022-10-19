@@ -17,6 +17,8 @@ import { useEffect, useState } from 'react'
 import { GET_REPORT_ITEMS } from '../graphql'
 import { ReportItemType } from './types'
 import nextI18NextConfig from '@root/next-i18next.config.js'
+import MainContainerUI from '@components/MainContainerUI'
+import { useTranslation } from 'next-i18next'
 
 const tableHeaders = [
   'Fuente de Consumo',
@@ -34,6 +36,7 @@ const tableHeaders = [
 ]
 
 const Detail = () => {
+  const { t } = useTranslation('reports')
   const router = useRouter()
   const [reportItems, setReportItems] = useState<ReportItemType[] | undefined>()
 
@@ -93,9 +96,9 @@ const Detail = () => {
   return (
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
-      <Flex w={'70%'} direction={'column'}>
+      <MainContainerUI title={t('reportDetail')}>
         {renderTable()}
-      </Flex>
+      </MainContainerUI>
     </Flex>
   )
 }
@@ -105,7 +108,7 @@ export const getStaticProps: GetServerSideProps = async ({ locale }) => {
     props: {
       ...(await serverSideTranslations(
         locale || 'es',
-        ['navbar', 'index', 'common', 'lateralMenu', 'reportsDetail'],
+        ['navbar', 'index', 'common', 'lateralMenu', 'reports'],
         nextI18NextConfig
       ))
     }

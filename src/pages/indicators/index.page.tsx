@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Button, Flex } from '@chakra-ui/react'
 import LaterlMenu from '@components/LateralMenu'
 import { useLoggedUserData } from 'hooks/useLoggedUserData'
 import type { GetServerSideProps, NextPage } from 'next'
@@ -11,6 +11,7 @@ import { useCustomQuery } from 'hooks/useCustomQuery'
 import { GET_REPORTS } from './graphql'
 import { useRouter } from 'next/router'
 import { ReportsType } from './types'
+import MainContainerUI from '@components/MainContainerUI'
 
 const Indicators: NextPage = () => {
   useLoggedUserData(true)
@@ -32,10 +33,16 @@ const Indicators: NextPage = () => {
   }
   const goToQuery = () => {
     return (
-      <Flex direction={'column'} w={'60%'} mx={'auto'}>
+      <Flex
+        direction={'row'}
+        flexWrap={'wrap'}
+        justify={'space-between'}
+        w={'full'}
+        gridGap={2}>
         {reports?.map(report => (
           <Button
             key={report.id}
+            w={'45%'}
             my={'14px'}
             onClick={() => HandleDetail(report.id)}>
             {report.name}
@@ -48,12 +55,9 @@ const Indicators: NextPage = () => {
   return (
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
-      <Flex w={'70%'} direction={'column'}>
-        <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
-          {t('indicatorsTitle')} 
-        </Text>
+      <MainContainerUI title={t('indicatorsTitle')}>
         {goToQuery()}
-      </Flex>
+      </MainContainerUI>
     </Flex>
   )
 }
