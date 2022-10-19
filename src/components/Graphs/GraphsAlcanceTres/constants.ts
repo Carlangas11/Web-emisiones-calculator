@@ -13,7 +13,7 @@ export const optionsBar = {
         label: (context: any) => {
           const totaldata = context.dataset.data.reduce((a: number, b: number) => a + b)
           const percentage = ((context.parsed.y / totaldata) * 100).toFixed(2)
-          return `${Number(context.parsed.y.toFixed()).toLocaleString()} kgCO2eq (${percentage}%)`
+          return `${Number(context.parsed.y.toFixed()).toLocaleString()} tonCO2eq (${percentage}%)`
         }
       }
     }
