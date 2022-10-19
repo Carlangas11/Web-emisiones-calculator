@@ -7,6 +7,15 @@ export const optionsBar = {
     title: {
       display: true,
       text: 'Alcance 3'
+    },
+    tooltip: {
+      callbacks: {
+        label: (context: any) => {
+          const totaldata = context.dataset.data.reduce((a: number, b: number) => a + b)
+          const percentage = ((context.parsed.y / totaldata) * 100).toFixed(2)
+          return `${Number(context.parsed.y.toFixed()).toLocaleString()} kgCO2eq (${percentage}%)`
+        }
+      }
     }
   }
 }

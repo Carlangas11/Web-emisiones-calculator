@@ -50,7 +50,7 @@ const Indicators: NextPage = () => {
       <LaterlMenu />
       <Flex w={'70%'} direction={'column'}>
         <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
-          {t('indicatorsTitle')}
+          {t('indicatorsTitle')} 
         </Text>
         {goToQuery()}
       </Flex>

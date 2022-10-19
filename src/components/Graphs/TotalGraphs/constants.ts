@@ -3,6 +3,15 @@ export const optionsBar = {
   plugins: {
     legend: {
       position: 'top' as const
+    },
+    tooltip: {
+      callbacks: {
+        label: (context: any) => {
+          const totaldata = context.dataset.data.reduce((a: number, b: number) => a + b)
+          const percentage = ((context.parsed.y / totaldata) * 100).toFixed(2)
+          return `${Number(context.parsed.y.toFixed()).toLocaleString()} kgCO2eq (${percentage}%)`
+        }
+      }
     }
   }
 }
@@ -12,6 +21,15 @@ export const optionsPie = {
   plugins: {
     legend: {
       position: 'right' as const
+    },
+    tooltip: {
+      callbacks: {
+        label: (tooltipItem: any) => {
+          const totaldata = tooltipItem.dataset.data.reduce((a: number, b: number) => a + b)
+          const percentage = ((tooltipItem.parsed * 100) / totaldata).toFixed(2)
+          return `${Number(tooltipItem.parsed.toFixed()).toLocaleString()} kgCO2eq (${percentage}%)`
+        }
+      }
     }
   }
 }

@@ -253,6 +253,9 @@ const TotalGraphs: FC<TotalGraphsProps> = ({ totalEmissionsByAlcance }) => {
       <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
         {t('totalGraphs')}
       </Text>
+      <Text fontWeight={600} fontSize={'24px'} lineHeight={'48px'}>
+        {Number(Number(totalGeneral?.[totalGeneral?.length - 1]).toFixed(0)).toLocaleString('es-CL') + ' kgCO2eq'}
+      </Text>
       <Flex justify={'center'} mt={7}>
         <Box w={'95%'}>{renderTable()}</Box>
       </Flex>
