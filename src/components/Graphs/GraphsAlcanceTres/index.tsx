@@ -258,7 +258,7 @@ const GraphsAlcanceTres: FC<GraphsAlcanceTresProps> = ({ alcance1 }) => {
         {t('graphsAlcance3')}
       </Text>
       <Text fontWeight={600} fontSize={'24px'} lineHeight={'48px'}>
-        {Number(Number(totalGeneral?.[totalGeneral?.length - 1]).toFixed(0)).toLocaleString('es-CL') + ' kgCO2eq'}
+        {Number(Number(totalGeneral?.[totalGeneral?.length - 1]).toFixed(0)).toLocaleString('es-CL') + ' tonCO2eq'}
       </Text>
       <Flex direction={'column'} justify={'center'} mt={7}>
         <Box w={'95%'} mx={'auto'}>
