@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   FormControl,
-  FormLabel,
   Icon,
   Input,
   Table,
@@ -36,6 +35,7 @@ import Loading from '@components/Loading'
 
 import { ExcelRowType, ExcelType } from './types'
 import { useSession } from 'next-auth/react'
+import MainContainerUI from '@components/MainContainerUI'
 
 const Upload: NextPage = () => {
   const { t } = useTranslation('upload')
@@ -156,21 +156,8 @@ const Upload: NextPage = () => {
   const renderUserLanding = () => (
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
-      <Flex w={'70%'} direction={'column'}>
-        <Button
-          w={['full', 'full', 'full', '30%']}
-          p={'10px 24px'}
-          border={'1px solid #622A74'}
-          color={'#FFF'}
-          onClick={() => downloadFile('inputFile')}
-          bg={'blue.900'}
-          leftIcon={<Icon color={'#FFF'} as={AttachmentIcon} />}>
-          {'Download Example File'}
-        </Button>
+      <MainContainerUI title={t('labelDocs')}>
         <FormControl>
-          <FormLabel fontWeight={400} fontSize={'16px'} lineHeight={'19px'}>
-            {t('labelDocs')}
-          </FormLabel>
           <Input
             ref={inputRef}
             hidden
@@ -179,28 +166,43 @@ const Upload: NextPage = () => {
             multiple
             onChange={fileInputChange}
           />
-          <Button
-            w={['full', 'full', 'full', '30%']}
-            disabled={!!nameFile}
-            p={'10px 24px'}
-            border={'1px solid #622A74'}
-            color={'gray.900'}
-            bg={'#FFF'}
-            leftIcon={<Icon color={'gray.900'} as={GoCloudUpload} />}
-            onClick={handleClick}>
-            {t('addFile')}
-          </Button>
-          <Button
-            w={['full', 'full', 'full', '30%']}
-            disabled={saveFile.length === 0}
-            p={'10px 24px'}
-            border={'1px solid #622A74'}
-            color={'#FFF'}
-            onClick={sendReport}
-            bg={'blue.900'}
-            leftIcon={<Icon color={'#FFF'} as={CheckIcon} />}>
-            {t('sendFile')}
-          </Button>
+          <Flex w={'full'} justify={'space-between'}>
+            <Button
+              w={['full', 'full', 'full', '30%']}
+              disabled={!!nameFile}
+              p={'10px 24px'}
+              border={'1px solid #622A74'}
+              color={'gray.900'}
+              bg={'#FFF'}
+              fontSize={'14px'}
+              leftIcon={<Icon color={'gray.900'} as={GoCloudUpload} />}
+              onClick={handleClick}>
+              {t('addFile')}
+            </Button>
+            <Button
+              w={['full', 'full', 'full', '30%']}
+              disabled={saveFile.length === 0}
+              p={'10px 24px'}
+              border={'1px solid #622A74'}
+              color={'#FFF'}
+              onClick={sendReport}
+              fontSize={'14px'}
+              bg={'blue.900'}
+              leftIcon={<Icon color={'#FFF'} as={CheckIcon} />}>
+              {t('sendFile')}
+            </Button>
+            <Button
+              w={['full', 'full', 'full', '30%']}
+              p={'10px 24px'}
+              border={'1px solid #622A74'}
+              color={'#FFF'}
+              fontSize={'14px'}
+              onClick={() => downloadFile('inputFile')}
+              bg={'blue.900'}
+              leftIcon={<Icon color={'#FFF'} as={AttachmentIcon} />}>
+              {t('download')}
+            </Button>
+          </Flex>
           {nameFile && (
             <Flex bg={'#F2F2F2;'} px={'26px'} my={'20px'} direction={'column'}>
               <Flex justify={'space-between'} my={'8px'}>
@@ -264,7 +266,7 @@ const Upload: NextPage = () => {
             </TableContainer>
           )
         )}
-      </Flex>
+      </MainContainerUI>
     </Flex>
   )
 

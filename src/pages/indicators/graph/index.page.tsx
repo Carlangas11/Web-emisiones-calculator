@@ -16,8 +16,11 @@ import TotalGraphs from '@components/Graphs/TotalGraphs'
 import GraphsAlcanceUno from '@components/Graphs/GraphsAlcanceUno'
 import GraphsAlcanceDos from '@components/Graphs/GraphsAlcanceDos'
 import GraphsAlcanceTres from '@components/Graphs/GraphsAlcanceTres'
+import MainContainerUI from '@components/MainContainerUI'
+import { useTranslation } from 'next-i18next'
 
 const Graph: NextPage = () => {
+  const { t } = useTranslation('indicators')
   useLoggedUserData(true)
 
   const router = useRouter()
@@ -36,7 +39,7 @@ const Graph: NextPage = () => {
   return (
     <Flex w={'95%'} justify={'space-between'}>
       <LaterlMenu />
-      <Flex w={'70%'} direction={'column'}>
+      <MainContainerUI title={t('graphDetail')}>
         {data && (
           <>
             <TotalGraphs
@@ -62,7 +65,7 @@ const Graph: NextPage = () => {
             />
           </>
         )}
-      </Flex>
+      </MainContainerUI>
     </Flex>
   )
 }

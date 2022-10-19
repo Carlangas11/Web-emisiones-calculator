@@ -1,5 +1,6 @@
 {
   "reports": "Reportes",
   "deletedFile": "Archivo borrado",
-  "errorFile": "Hubo un error, el archivo no pude ser eliminado"
+  "errorFile": "Hubo un error, el archivo no pude ser eliminado",
+  "reportDetail": "Detalle de reporte"
 }
