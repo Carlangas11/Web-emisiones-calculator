@@ -155,6 +155,9 @@ const GraphsAlcanceDos: FC<GraphsAlcanceDosProps> = ({ alcance2 }) => {
       <Text fontWeight={700} fontSize={'36px'} lineHeight={'48px'}>
         {t('graphsAlcance2')}
       </Text>
+      <Text fontWeight={600} fontSize={'24px'} lineHeight={'48px'}>
+        {Number(Number(totalGeneral?.[totalGeneral?.length - 1]).toFixed(0)).toLocaleString('es-CL') + ' kgCO2eq'}
+      </Text>
       <Flex direction={'column'} justify={'center'} mt={7}>
         <Box w={'95%'} mx={'auto'}>
           {renderTable()}
