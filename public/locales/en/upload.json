@@ -2,7 +2,7 @@
   "labelDocs": "Upload your file",
   "addFile": "Upload",
   "sendFile": "Send",
-  "fileSend": "The fail cant be send",
+  "fileSend": "The fail has been sent",
   "failedSend": "Has an error, the file cant be send",
   "download": "Download Example File"
 }

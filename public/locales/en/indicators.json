@@ -3,9 +3,9 @@
   "emissionsByArea": "Emissions by area",
   "totalGraphs": "Graphics by total",
   "emissionsByNivel2": "Emissions by second level",
-  "graphsAlcance1": "Graphics by reach 1",
-  "graphsAlcance2": "Graphics by reach 2",
+  "graphsAlcance1": "Graphics by scope 1",
+  "graphsAlcance2": "Graphics by scope 2",
   "emissionsByNivel3": "Emissions by third level",
-  "graphsAlcance3": "Graphics by reach 3",
+  "graphsAlcance3": "Graphics by scope 3",
   "graphDetail": "Graphs Detail"
 }
